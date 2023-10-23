@@ -1,7 +1,7 @@
 export interface ServerToClientEvents {
     noArg: () => void;
     username:(value:string) => void
-    connectedToUser:() => void;
+    connectedToUser:(value:string) => void;
     basicEmit: (a: number, b: string, c: Buffer) => void;
     withAck: (d: string, callback: (e: number) => void) => void;
 }
@@ -22,4 +22,13 @@ age: number;
 
 export interface ConnectProps {
     userId:string;
+}
+
+export interface ChatItemProps {
+    sent: boolean;
+    message: string;
+}
+
+export interface ChatProps {
+    userId: string;
 }

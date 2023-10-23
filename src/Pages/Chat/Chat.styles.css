@@ -1,3 +1,135 @@
-h1 {
+.chat-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-flow: column;
+}
+
+.chat-header {
+    background-color: #003566;
+    width: 100%;
+    height: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.chat-header h2 {
+    margin: 0;
+    margin-left: .5em;
+    color: #ffc300;
+}
+
+.chat-id {
+    margin-left: .5em;
+    border-radius: .5em;
+    padding: 0.6em;
+    background-color: #001d3d;
+    color: #ffc300;
+    font-weight: bold;
+}
+
+.chat-content {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-flow: column;
+}
+
+.chat-list {
+    margin: 0;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+}
+
+.chat-received-item {
+    width: 100%;
+    margin-top: 1em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.chat-received-item p {
+    margin: 0;
+    margin-left: 1em;
+    border-radius: .5em;
+    padding: .8em;
+    background-color:#001d3d;
+    text-decoration: none;
     color: white;
+}
+
+.chat-sent-item {
+    width: 100%;
+    margin-top: 1em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.chat-sent-item p {
+    margin: 0;
+    margin-right: 1em;
+    border-radius: .5em;
+    padding: .8em;
+    background-color:#003566;
+    text-decoration: none;
+    color:#ffc300;
+}
+
+.chat-form {
+    margin: 0;
+    width: 100%;
+    flex: 1 1 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-input {
+    border: none;
+    background-color: #001d3d;
+    border-top-left-radius: .5em;
+    border-bottom-left-radius: .5em;
+    width: 88%;
+    height: 60%;
+    padding: .8em;
+    color: #ffc300;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.chat-input:focus {
+    outline: none;
+}
+
+.chat-input::placeholder {
+    color: #bda247;
+    font-weight: bold;
+}
+
+.chat-button {
+    border: none;
+    border-top-right-radius: .5em;
+    border-bottom-right-radius: .5em;
+    width: 10%;
+    height: 60%;
+    background-color:#003566;
+    color: #ffc300;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.chat-button:hover {
+    opacity: 70%;
 }

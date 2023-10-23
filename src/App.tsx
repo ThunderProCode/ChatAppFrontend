@@ -11,6 +11,7 @@ function App() {
   const navigate = useNavigate();
   const [isConnected,setIsConnected] = useState(socket.connected);
   const [userId, setuserId] = useState('');
+  const [targetUserId, setTargetUserId] = useState('');
 
   
   useEffect(() => {
@@ -28,13 +29,17 @@ function App() {
       setIsConnected(false);
     }
 
-    socket.on('connectedToUser',onConnect);
+    socket.on('connectedToUser',(value:string) => {
+      onConnect();
+      setTargetUserId(value);
+    });
+
     socket.on('disconnect', onDisconnect);
 
     socket.on('username',(value:string) => {
       onUsername(value);
     });
-    
+
 
     if(userId){
       navigate('/connect');
@@ -55,7 +60,7 @@ function App() {
       <Routes>
         <Route path='/' element={ <Loading></Loading> }/>
         <Route path='/connect' element={ <Connect userId={userId}></Connect> } />
-        <Route path='/chat' element={ <Chat></Chat> }/>
+        <Route path='/chat' element={ <Chat userId={targetUserId}></Chat> }/>
       </Routes>
     </>
 
