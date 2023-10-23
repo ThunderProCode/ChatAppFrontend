@@ -3,12 +3,14 @@ export interface ServerToClientEvents {
     username:(value:string) => void
     connectedToUser:(value:string) => void;
     basicEmit: (a: number, b: string, c: Buffer) => void;
+    chatMessage: (message:string) => void;
     withAck: (d: string, callback: (e: number) => void) => void;
 }
 
 export interface ClientToServerEvents {
     hello: () => void;
     connectionUsername:(value:string) => void;
+    chatMessageToServer: (message: string, to:string) => void;
 }
 
 export interface InterServerEvents {
