@@ -12,19 +12,28 @@ const Connect: FC<ConnectProps> = (props): JSX.Element => {
 
     return(
         <form className="connect-form">
-            <div className="user-id">
-                <p>{ props.userId }</p>
+            <div className="connect-header">
+                <h2 className="connect-title">My user-id:</h2>
+                <div className="connect-user-id">
+                    <p>{props.userId}</p>
+                </div>
             </div>
-            <label className="connect-label"  htmlFor="connection-id">Connect to a User: </label>
-            <input
-                className="connect-input"
-                id="connection-id" 
-                type="number" 
-                max="999999" 
-                min="0"
-                placeholder="Type user's connection id:"
-            />
-            <button className="connect-button">Connect</button>
+            <div className="input-container">
+                <div className="form-control">
+                    <label className="connect-label"  htmlFor="connection-id">User Id: </label>
+                    <input
+                        className="connect-input"
+                        id="connection-id" 
+                        type="number" 
+                        max="999999" 
+                        min="0"
+                        placeholder="Connection id"
+                    />
+                </div>
+            </div>
+            <div className="input-container">
+               <button className="connect-button">Connect</button>
+            </div>
         </form>
     )
 }
