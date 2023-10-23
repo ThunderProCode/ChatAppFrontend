@@ -10,44 +10,51 @@ function App() {
   
   const navigate = useNavigate();
   const [isConnected,setIsConnected] = useState(socket.connected);
-  const [fooEvents, setFooEvents] = useState([]);
   const [userId, setuserId] = useState('');
 
+  
   useEffect(() => {
-
+    
     function onConnect() {
+      console.log('UserConnected');
       setIsConnected(true);
+    }
+    
+    function onUsername(value:string) {
+      setuserId(value);
     }
 
     function onDisconnect() {
       setIsConnected(false);
     }
 
-    function onUsername(value:string) {
-      setuserId(value);
-    }
-
-    socket.on('connect', onConnect);
+    socket.on('connectedToUser',onConnect);
     socket.on('disconnect', onDisconnect);
+
     socket.on('username',(value:string) => {
       onUsername(value);
     });
+    
 
     if(userId){
       navigate('/connect');
+    }
+
+    if(isConnected){  
+      navigate('/chat');
     }
 
     return () => {
       socket.off('connect', onConnect);
       socket.off('disconnect', onDisconnect);
     };
-  },[userId]);
+  },[userId,isConnected]);
 
   return (
     <>
       <Routes>
         <Route path='/' element={ <Loading></Loading> }/>
-        <Route path='/connect' element={ <Connect userId={userId} ></Connect> } />
+        <Route path='/connect' element={ <Connect userId={userId}></Connect> } />
         <Route path='/chat' element={ <Chat></Chat> }/>
       </Routes>
     </>

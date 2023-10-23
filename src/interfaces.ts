@@ -1,12 +1,14 @@
 export interface ServerToClientEvents {
     noArg: () => void;
     username:(value:string) => void
+    connectedToUser:() => void;
     basicEmit: (a: number, b: string, c: Buffer) => void;
     withAck: (d: string, callback: (e: number) => void) => void;
 }
 
 export interface ClientToServerEvents {
-hello: () => void;
+    hello: () => void;
+    connectionUsername:(value:string) => void;
 }
 
 export interface InterServerEvents {

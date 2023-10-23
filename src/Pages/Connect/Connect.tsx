@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
 import './Connect.styles.css';
 import { socket } from "../../socket";
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
@@ -6,12 +6,26 @@ import { ConnectProps } from "../../interfaces";
 
 const Connect: FC<ConnectProps> = (props): JSX.Element => {
 
+    const [inputId,setInputId] = useState("");
+    
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        // 👇 Store the input value to local state
+        setInputId(e.target.value);
+    };
+
+
     if(!(props.userId)){
         return <Navigate to="/" replace/>
     }
 
+    const handleSubmit = (event:FormEvent) => {
+        event.preventDefault();
+        console.log('Emitting:'+inputId);
+        socket.emit('connectionUsername',inputId);
+    }
+
     return(
-        <form className="connect-form">
+        <form onSubmit={handleSubmit} className="connect-form">
             <div className="connect-header">
                 <h2 className="connect-title">My user-id:</h2>
                 <div className="connect-user-id">
@@ -28,11 +42,12 @@ const Connect: FC<ConnectProps> = (props): JSX.Element => {
                         max="999999" 
                         min="0"
                         placeholder="Connection id"
+                        onChange={handleChange}
                     />
                 </div>
             </div>
             <div className="input-container">
-               <button className="connect-button">Connect</button>
+               <button className="connect-button" type="submit">Connect</button>
             </div>
         </form>
     )
